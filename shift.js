@@ -25,7 +25,6 @@
 
   // カスタマイズビュー
   kintone.events.on('app.record.index.show', function(event) {
-    if (event.viewName !== 'シフト入力') return event;
 
     const el = kintone.app.getHeaderSpaceElement();
     el.innerHTML = '';
