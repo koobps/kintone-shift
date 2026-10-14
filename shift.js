@@ -97,8 +97,13 @@
       let html = '<table style="border-collapse:collapse;min-width:600px;">';
       // ヘッダー行
       html += '<tr><th style="border:1px solid #ccc;padding:6px 10px;background:#f5f5f5;white-space:nowrap;">スタッフ</th>';
+    const DAYS_JA = ['日','月','火','水','木','金','土'];
       for (let d = 1; d <= days; d++) {
-        html += `<th style="border:1px solid #ccc;padding:4px 6px;background:#f5f5f5;text-align:center;min-width:36px;">${d}</th>`;
+        const match = currentMonth.match(/(\d+)年(\d+)月/);
+        const dow = match ? new Date(parseInt(match[1]), parseInt(match[2])-1, d).getDay() : 0;
+        const dowStr = DAYS_JA[dow];
+        const color = dow === 0 ? '#ffebee' : dow === 6 ? '#e3f2fd' : '#f5f5f5';
+        html += `<th style="border:1px solid #ccc;padding:4px 6px;background:${color};text-align:center;min-width:36px;">${d}<br><span style="font-size:10px;">${dowStr}</span></th>`;
       }
       html += '</tr>';
 
